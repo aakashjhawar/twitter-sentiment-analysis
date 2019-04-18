@@ -50,27 +50,63 @@ Porter Stemmer
 ![Dataset cleaned](https://github.com/aakashjhawar/twitter-sentiment-analysis/blob/master/images/tweets_comparision.png)
 
 ### Story Generation
-Most common words
+##### Most common words
+
+
 ![Word Cloud](https://github.com/aakashjhawar/twitter-sentiment-analysis/blob/master/images/wordcloud.png)
 
-Most Popular Hashtags
+##### Most Popular Hashtags
+
+
 ![Dataset cleaned](https://github.com/aakashjhawar/twitter-sentiment-analysis/blob/master/images/hashtags.png)
 
-### Bag of Words Features
+### 1. Bag of Words Features
 Bag of Words (BOW) is a method to extract features from text documents. These features can be used for training machine learning algorithms. It creates a vocabulary of all the unique words occurring in all the documents in the training set.
 In simple terms, it’s a collection of words to represent a sentence with word count and mostly disregarding the order in which they appear.
 
-### TF-IDF Features
+### 2. TF-IDF Features
 Term Frequency-Inverse Document Frequency. It Penalise the most common words by assigning them lower weights while giving imortance to words which are rare in corpus but apper in good number in few documents.
 
 > TF = (Number of times term 't' appears in a doc) / (Number of terms in doc)
+>
 > IDF = log(N/n) 
+>
 > where, N = number of document 
+>
 > n = number of documents a term 't' has appeared in
+>
 > TF-IDF = TF*IDF
+
+### 3. Word2Vec Features
+It represents each word as a vector(Word Emebddings). The objective is to redefine high dimensional word features into low dimensional features by preserving contexual similarity in corpus.
+
+Example
+> King - Man + Woman = Queen
+
+###### Similar words using Word2Vec
+![similar image](https://github.com/aakashjhawar/twitter-sentiment-analysis/blob/master/images/similar_words.png)
+Advantages> 
+* Dimensionality reduction: Significant reduction in number of features
+* It captures the meaning of word i.e., semantic erlations and different types of context
+
+Word2Vec is combination of two algorithms:
+* [CBOW - Continous Bag of Words](https://iksinc.online/tag/continuous-bag-of-words-cbow/): Predict probability of given context
+* [Skip-Gram Model](https://www.kdnuggets.com/2018/04/implementing-deep-learning-methods-feature-engineering-text-data-skip-gram.html): Capture different semantic for sigle word. eg. Apple is company as well as fruit.
  
 
+Both are shallow Neural Network. They map words to target variables which are also words.
+
+### 4. Doc2Vec Features
+Unsupervised algorithm to generate vector for sentence, paragraph and documents.
+ It provides an additional context which is unique for every document in corpus.
+ Doc vector is trained along with Word vector.
+
+To implement Doc2Vec Algorithm, labelize/tag each tokenised tweet with unique ids. ([Genism's LabledSentence](https://radimrehurek.com/gensim/models/doc2vec.html))
 
 
-
-
+### Fine tuning XGBoost + Word2Vec
+General approach for parameter tuning
+1. Choose relatively high learning rate (0.3 usually)
+2. Tune tree-specific parameters, eg. max_depth, min_child_weight, subsample etc.
+3. Tune learning rate
+4. Finally tune gamma to avoid overfitting
