@@ -7,7 +7,7 @@ Sentimental analysis of tweets to detect racist/sexist tweets using Bag of Words
 * TextBlob
 * Pandas
 * nltk (text manipulation)
-* re ()
+* re (regular expression)
 
 ## Dependencies
 1. Install TextBlob `pip install -U textblob`
@@ -29,7 +29,7 @@ Open the jupyter notebook file.
 2. Remove punctuations and numbers from tweets 
 `replace("[^a-zA-Z#]", " ")`
 3. Remove words whose length is less than 3 `word < str.len(3)`
-4. Text Normalization using PorterStemmer()
+4. Text Normalization using Porter Stemmer
 
 Porter Stemmer
 * Tokenize the tweets
@@ -40,10 +40,7 @@ Porter Stemmer
 
 ### 3. Story Generation
 ##### Most common words
-
-
 ![Word Cloud](https://github.com/aakashjhawar/twitter-sentiment-analysis/blob/master/images/wordcloud.png)
-
 
 
 ##### Most Popular Hashtags
@@ -65,6 +62,7 @@ Term Frequency-Inverse Document Frequency. It Penalise the most common words by 
 > n = number of documents a term 't' has appeared in
 >
 > TF-IDF = TF*IDF
+
 
 ### Word2Vec Features
 It represents each word as a vector(Word Emebddings). The objective is to redefine high dimensional word features into low dimensional features by preserving contexual similarity in corpus.
@@ -117,4 +115,4 @@ Accuracy of Bag of Words, TF-IDF Features, Word2Vec and Doc2Vec over Logistic Re
 | XGBoost | 51.30% | 51.85% | 64.54% | 34.83% |
 
 
-#### XGBoost + Word2Vec gives best F1 score
+#### XGBoost + Word2Vec gives best F1 score of 64.54%.
